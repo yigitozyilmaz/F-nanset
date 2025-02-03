@@ -1,20 +1,15 @@
+import React, { useState } from "react";
+import { InputSwitch } from "primereact/inputswitch";
+import { Rating } from "primereact/rating";
+
 const Categories = ({ categories, onCategorySelect }) => {
+    const [checked, setChecked] = useState(true);
+    const [value, setValue] = useState(null);
     return (
-        <>
-            <h1 className="products">CATEGORIES</h1>
-            <div className="cardList">
-                {categories.map((category) => (
-                    <div
-                        key={category}
-                        className="category-card"
-                        onClick={() => onCategorySelect(category)}
-                    >
-                        <img src={`/category/${category}.png`} alt={category} id="img" />
-                        <h3>{category}</h3>
-                    </div>
-                ))}
-            </div>
-        </>
+        <div className="card flex justify-content-center">
+            <Rating value={value} onChange={(e) => setValue(e.value)} />
+            <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
+        </div>
     );
 };
 
